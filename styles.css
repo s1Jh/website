@@ -1,0 +1,191 @@
+.base {
+  /* Site style constants */
+  --image-resize: 100%;
+  --background-image: url("/img/stars.gif");
+  --primary: rgb(30, 30, 30);
+  --secondary: White;
+  --tertiary: DimGray;
+  --margin-big: 50px;
+  --margin-small: 20px;
+  --icon-size: 32px;
+  --animation-time: 0.3s;
+
+  /* Default values for mod values */
+  --table-data-align: left;
+  --table-layout: auto;
+  --image-resize: 50%;
+
+  margin: 0px;
+  font-family: serif;
+  background-image: var(--background-image);
+  background-color: var(--secondary);
+}
+
+.dark {
+  --primary: White;
+  --secondary: rgb(30, 30, 30);
+  --tertiary: DimGray;
+}
+
+.dark-no-trans {
+  --primary: White;
+  --secondary: rgb(30, 30, 30);
+  --tertiary: DimGray;
+  --animation-time: 0.0s;
+}
+
+.icon {
+  display: inline;
+  max-width: var(--icon-size);
+  max-height: auto;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 1px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--margin-small);
+  margin-bottom: var(--margin-small);
+  max-width: var(--image-resize);
+  height: auto;
+}
+
+.full-width {
+  --image-resize: 100%;
+  width: 100%;
+}
+
+a {
+  color: var(--primary);
+  background-color: var(--secondary);
+  font-style: italic;
+  transition: background-color var(--animation-time),
+              color var(--animation-time);
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+
+a:visited {
+  color: var(--tertiary);
+}
+
+a:hover {
+  text-decoration-style: double;
+}
+
+th, tr, td {
+  border: 1px solid var(--primary);
+  padding: 2px;
+  transition: background-color var(--animation-time),
+              color var(--animation-time),
+              border var(--animation-time);
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  --image-resize: 50%;
+  text-align: var(--table-data-align);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: var(--table-layout);
+  overflow: hidden;
+  color: var(--primary);
+  background-color: var(--secondary);
+  transition: background-color var(--animation-time),
+              color var(--animation-time);
+}
+
+.figure {
+  width: 50%;
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+  margin: auto;
+  padding: 0px;
+}
+
+.text-table {
+  --table-data-align: left;
+  --table-layout: auto;
+}
+
+.data-table {
+  --table-data-align: right;
+  --table-layout: fixed;
+}
+
+.top-links {
+  border: 0px;
+  width: 100%;
+  height: var(--margin-big);
+  padding: 0px;
+  margin: 0px;
+  text-decoration: none;
+  font-weight: bolder;
+  font-family: serif;
+  font-size: var(--margin-small);
+  color: var(--primary);
+  background-color: var(--secondary);
+  transition: background-color var(--animation-time),
+              color var(--animation-time);
+}
+
+.top-table {
+  --table-data-align: center;
+  --table-layout: fixed;
+  padding: 0px;
+  transition: background-color var(--animation-time),
+              color var(--animation-time);
+}
+
+.top-banner {
+  color: var(--primary);
+  background-color: var(--secondary);
+  outline: 1px solid var(--primary);
+  border: 1px solid var(--primary);
+  transition: background-color var(--animation-time),
+              color var(--animation-time);
+}
+
+.content, .header, .footer {
+  max-width: 90%;
+  margin-top: var(--margin-small);
+  margin-bottom: var(--margin-small);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--margin-small);
+  color: var(--primary);
+  background-color: var(--secondary);
+  transition: background-color var(--animation-time),
+              color var(--animation-time);
+}
+
+.header { 
+  background-image: url("/img/pixel-planet.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+}
+
+.content {
+  text-align: justify;
+}
+
+.footer {
+  text-align: left;
+}
+
+.hidden {
+    display: none;
+}
