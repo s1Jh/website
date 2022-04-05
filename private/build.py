@@ -41,8 +41,8 @@ def build_file(path: str):
         template = template.replace(f"${replacement}$", replacements[replacement])
 
     this_path = os.getcwd()
-    out_path = os.path.relpath(path)
-    out_path = os.path.join("..", out_path)
+    out_path = os.path.relpath(path, "./private")
+    out_path = os.path.join(".", out_path)
     out_path = out_path.replace(".article", ".html")
 
     print(f"Out: {out_path}")
@@ -60,27 +60,28 @@ KEEP_DIRS = [
     ".git",
     "default.css",
     "styles.css",
-    ".gitignore"
+    ".gitignore",
+    "requirements.txt"
 ]
 
 if __name__ == "__main__":
     config = ConfigParser()
-    config.read("defaults.ini")
+    config.read("private/defaults.ini")
 
 
     for option in config.options("DEFAULTS"):
         default_vars[option.upper()] = config.get("DEFAULTS", option)
 
-    for file in os.listdir(".."):
+    for file in os.listdir("."):
         if file not in KEEP_DIRS:
-            delete_path = os.path.join('..', file)
+            delete_path = os.path.join('.', file)
             print(f"Deleting {delete_path}")
             if os.path.isdir(delete_path):
                 shutil.rmtree(delete_path)
             else:
                 os.remove(delete_path)
 
-    for dirpath, dirnames, filenames in os.walk("."):
+    for dirpath, dirnames, filenames in os.walk("private/"):
         for filename in filenames:
             path = os.path.join(dirpath, filename)
 
