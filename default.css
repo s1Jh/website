@@ -1,0 +1,177 @@
+.base {
+    color: White;
+    background-color: Black;
+    margin: 0px;
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+hr {
+    border: 1px solid White;
+}
+
+.header {
+    display: block;
+    margin: 20px;
+}
+
+img.artscroll {
+    height: 100vh;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0px;
+}
+
+.right, .left {
+    display: inline-block;
+}
+
+.right {
+    padding: 20px;
+    width: 80%;
+}
+
+.left {
+    width: fit-content;
+    max-width: 20%;
+    border-right: 2px solid White;
+    display: flex;
+    justify-content: center;
+    overflow: clip;
+    min-width: 0px;
+}
+
+.footer {
+    font-family: Helvetica;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+}
+.footer-left {
+    text-align: left;
+}
+
+.footer-right {
+    font-family: serif;
+    font-stretch: ultra-condensed;
+    text-align: right;
+}
+
+.content {
+    font-size: 1.8em;
+    font-family: Times;
+    text-align: justify;
+    display: block;
+    word-wrap: break-word;
+}
+
+.episode, .quote, span.title-container .top-table {
+    width: fit-content;
+}
+
+.title {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 4em;
+    margin-bottom: -0.4em;
+}
+
+.episode {
+    margin-top: 3em;
+    font-family: Helvetica;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+span.title-container {
+    position: relative;
+    display: block;
+    font-stretch: ultra-condensed;
+}
+
+.quote {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1em;
+    display: block;
+    margin-top: 20px;
+}
+
+th, tr, td {
+  border: 1px solid var(--primary);
+  padding: 2px;
+  transition: background-color var(--animation-time),
+              color var(--animation-time),
+              border var(--animation-time);
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  --image-resize: 50%;
+  text-align: var(--table-data-align);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: var(--table-layout);
+  overflow: hidden;
+  color: White;
+  background-color: Black;
+}
+
+.figure {
+  width: 50%;
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+  margin: auto;
+  padding: 0px;
+}
+
+.text-table {
+  --table-data-align: left;
+  --table-layout: auto;
+}
+
+.data-table {
+  --table-data-align: right;
+  --table-layout: fixed;
+}
+
+.highlight {
+    border: 1px solid white;
+}
+
+.top-table {
+    --table-data-align: center;
+    --table-layout: fixed;
+    padding: 0px;
+    color: White;
+    margin-top: 20px;
+}
+
+a {
+    color: White;
+}
+
+a:visited {
+    color: gainsboro;
+}
+
+a:hover {
+    color: darkgrey;
+}
+
+h1, h2, h3 {
+    text-align: left;
+}

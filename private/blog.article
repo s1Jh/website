@@ -1,0 +1,12 @@
+&&default.html
+$$SITETITLE sijhsite::blog
+$$EDITDATE 20.3.2022
+$$SITEICON /img/favicon.ico
+
+$$TITLE BLOG
+$$EPISODE Episode 2: Write your way out of everything.
+$$QUOTE The pen is mightier than the sword.
+
+# List of my blog posts:
+
+[Test entry](/upcoming.html)

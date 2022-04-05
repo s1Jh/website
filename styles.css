@@ -171,7 +171,7 @@ table {
 }
 
 .header { 
-  background-image: url("/img/pixel-planet.gif");
+  background-color: var(--primary);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

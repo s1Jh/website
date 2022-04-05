@@ -1,0 +1,152 @@
+&&default.html
+$$SITETITLE Making a website
+$$EDITDATE 20.3.2022
+$$SITEICON /img/favicon.ico
+
+# Making a website
+
+I dreamed of having my own website for a long time now, must've started wayy back in my childhood, when I wanted to make minecraft mods. But I never got around to trying to make one, despite my many other endeavours in programming.
+
+Well, today I'm changing that, I'm making a website!
+
+## HTML
+
+Let's not pretend [HTML](https://en.wikipedia.org/wiki/HTML) is some insanely difficult thing to master, it is actually a really simple markup language. Writing a HTML only site is only marginally more difficult than writing a word document, but only due to having to google for the tag you need or inserting the hundredth &lt;p&gt; and, lest not forget, &lt;/p&gt;.
+
+So, that's where I started. I had a tiny bit of experience with before, hacking websites with inspect element, the lot. My first versions of this site were as barebones as you could get, but let's not get bored with that, everyone and their mother has at some point gone through this process before by now.
+
+I really had no idea how I wanted to structure my site at first. Since it was mainly just for posting personal projects and random manifestos, I decided to go with a text centric design. The main landing page will serve as a place to click through to the latest posts and post categories, posts themselves will all have their own pages. Pretty standard design for a website like this
+
+## One page per post, literally
+
+I'm lazy, so I rather than spending extra 30 minutes doing something properly, I'll rather use a half botched solution. So instead of having one master template for how the site should be, I will have each page be just static HTML. Of course, if I ever decide to change the layout, I will have to go to *every* single article I've written and update it one by one.
+
+Right now, I'm not too afraid of this, since I am planning on hopefully doing this properly in the future and since I probably won't post enough for the editing to become a impossible task. Also, there are tools for quick find+replace, so even if I end up with a thousand articles, I will be able to make simple changes. Best cope would be that this was how God intended for it to be done back in the 90s so yea.
+
+## Designing the perfect website
+
+Originally I wanted a plan HTML site, since I really love their looks, but at the same time I wanted to insert cool gifs and colors and everything. What would the web be without tacky, amateur designed websites after all? So I decided to add [CSS](https://en.wikipedia.org/wiki/CSS).
+
+I really dislike twitter, for many reasons, one of them being that the site takes 10 seconds to load for me without any cache. I wish I was overexaggerating. Inspired by everything wrong with modern web, I wanted to make the site include as little JavaScript as possible, ideally none.
+
+## Making the perfect website
+
+After finishing up with all the 5 minutes of hard planning, I went ahead and started writing some code. The basic HTML was done in a jiffy, not much to talk about there
+
+### CSS
+
+I wanted my site to have a animated starry background, this idea was completely stolen from [Arkadag's](https://twitter.com/ArkadagEffendi/) [website](https://arkadag.su/). I put the the background into the body's style, like so:
+
+```css
+body
+{
+    font-family: serif;
+    background-image: var("stars.gif");
+    background-color: var(Black);
+}
+```
+
+My site is split into three parts, the header, the content and the footer. Each is styled a bit differently, but they all have a common base. I have done it like as follows:
+
+```
+.content, .header, .footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 20px;
+
+    transition: background-color 0.4s color 0.4s;
+    color: Black;
+    background-color: White;
+}
+
+.header {
+    background-image: url("/img/pixel-planet.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+.content { text-align: justify; }
+.footer { text-align: left; }
+```
+
+As you can see, I define the margin and color properties for all files equally, but each section then gets modified. I am really liking the way CSS handles things, it all feels pretty natural.
+
+### Dark theme
+
+I must preface this semgnet by saying that I'm a avid light theme supremacist, I use it literally everywhere and I look down upon anyone who dares call dark theme superior. But, it seemed like an interesting problem to solve, so I went to implement it. Well, I say "I" but I didn't really implement shit, I copied code as always, but let me break it down, because it's interesting and really highlights the flexibility of CSS.
+
+I start by adding variables into my body's style, these hold information about how to style the page in normal mode
+
+```css
+body
+{
+    --bg-image: url("/img/stars.gif");
+    --text: rgb(30, 30, 30);
+    --bg: White
+
+    background-image: var(--bg-image);
+    background-color: var(--bg);
+}
+```
+
+After that, I add another style, called .dark, this will hold variables of the same names that describe how to color elements while using dark mode:
+
+```css
+.dark
+{
+    --text: White;
+    --bg: rgb(30, 30, 30);
+}
+```
+
+Right now, I just swap the text (foreground) and background colors in dark mode. Last step to making all this work is to add a script that will add the dark style into the body's style. Think of it like enabling the body style to inherit from the dark style. For this I added a button with the id "toggle", which is in a table above.
+
+```javascript
+document.getElementById("toggle").addEventListener("click", () =&gt; {
+    document.body.classList.toggle("dark");
+});
+```
+
+Best part is to come, I can use the browser's local storage to keep track of whether the site should use white or black theme between sessions. You can view your current preference by going into the developer tools (F12 on Firefox) -&gt; Storage -&gt; Local Storage -&gt; site name, and check the "theme" key. The complete script to change the theme then looks like this:
+
+```javascript
+if (window.localStorage.getItem("theme") === "dark") document.body.classList.add("dark");
+
+document.getElementById("toggle").addEventListener("click", () =&gt; {
+    document.body.classList.toggle("dark");
+    if (window.localStorage.getItem("theme") === "dark") {
+        window.localStorage.setItem("theme", "light");
+    } else window.localStorage.setItem("theme", "dark");
+});
+```
+
+### JavaScript tomfoolery
+Now that I added [JavaScript](https://en.wikipedia.org/wiki/JavaScript) to the site to enable dark mode, I decided to fuck around with it a bit more. First idea that I came up with is a sort of message of the day text, like the yellow main menu text in minecraft. The script currently looks for the "motd" div in my site and replaces it with text. The first part of the text is static, "Random projects, thoughts, etc...", the second is picked randomly from an array of options. I made the script write the static part as well as picking the random part. This was because I couldn't figure out a way to place HTML text and a div on the same line. There is probably a way, but this was a lot faster. Here's the code:
+
+```javascript
+const motds = [
+    "now with 100% more javascript",
+    ...
+];
+
+var motd = motds[Math.floor(Math.random() * motds.length)];
+document.getElementById("motd").innerHTML = "&lt;i&gt;;Random projects, thoughts, etc ... " + motd + '.&lt;/i&gt;';
+```
+
+To keep this HTML compliant, I placed the &lt;i&gt; tag in the script, since a div cannot apparently be a child element of a &lt;i&gt;.
+
+The last thing that came to me was a codeblock with syntax highlighting. This actually came to me while writing this post. I found this drop-in library called &lt;a href="https://highlightjs.org/"&gt;highlight.js&lt;/a&gt;. I really didn't want to end up dragging in a bunch of JS libraries, but this one seemed worth it enough, since I would be posting a lot of code. It is extra 97kB worth of stuff, but that's like about as big as one gif that I use, so it's not that bad.
+
+## Styling the perfect website
+
+![Graphic design is my passion](http://ih0.redbubble.net/image.82233968.6707/flat,800x800,075,f.jpg)
+
+I'm not a graphic designer, but I am quite happy with what I made. Text is very dark gray, background is white. Dark theme just inverts them. I also outfitted my site with some extremely tasteful gifs, you wouldn't believe how hard it is to find small computer related gifs on the internet, but I managed. I actually found the header gif in discord's gif search, I think the quary was just "pixel". I don't like how little detail there is on the header button gifs, but since they're just little attention grabbers, I don't mind it very much.
+
+## Wrap-up
+
+Making a nice website sure isn't as hard as I thought, my approach was a bit botched in places, but that just adds charm in my opinion. I learned a lot about HTML and CSS which I'm grateful for. The end product is also decent I think. I need to fix a few naming irregularities in the styles and add generic styles for tables, image captions and everything. Maybe one day I will even figure out a proper way to write these articles rather than just copying a template every time.
+The site isn't up as of writing this, I am still hosting it locally for development, so if you're seeing this, that means I actually bought a domain and setup proper hosting, which will be it's own post.
