@@ -25,7 +25,7 @@ def build_file(path: str):
 
             elif line.startswith("&&"):
                 value = line[line.find("&&") + 2:-1]
-                value = os.path.join("templates", value)
+                value = os.path.join("private/templates", value)
                 if os.path.exists(value):
                     print(f"Template: {value}")
                     template_file = open(value, "r")
