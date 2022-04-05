@@ -25,9 +25,9 @@ def build_file(path: str):
 
             elif line.startswith("&&"):
                 value = line[line.find("&&") + 2:-1]
-                value = os.path.join("private/templates", value)
+                value = os.path.join("./private/templates", value)
+                print(f"Wants template: {value}")
                 if os.path.exists(value):
-                    print(f"Template: {value}")
                     template_file = open(value, "r")
                     template = template_file.read()
                     template_file.close()
@@ -61,7 +61,8 @@ KEEP_DIRS = [
     "default.css",
     "styles.css",
     ".gitignore",
-    "requirements.txt"
+    "requirements.txt",
+    ".venv"
 ]
 
 if __name__ == "__main__":
