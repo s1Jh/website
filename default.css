@@ -28,6 +28,8 @@ img.artscroll {
     position: sticky;
     position: -webkit-sticky;
     top: 0px;
+    width: auto;
+    max-height: 100vh;
 }
 
 .right, .left {
