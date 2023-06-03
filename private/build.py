@@ -1,7 +1,7 @@
 import markdown
 import sys
 import os
-from mdx_gfm import GithubFlavoredMarkdownExtension
+import pycmarkgfm 
 from configparser import ConfigParser
 import copy
 import shutil
@@ -34,7 +34,8 @@ def build_file(path: str):
             else:
                 markdown_text += line
 
-    html_text = markdown.markdown(markdown_text, extensions=[GithubFlavoredMarkdownExtension()])
+    #html_text = markdown.markdown(markdown_text, extensions=[GithubFlavoredMarkdownExtension()])
+    html_text = pycmarkgfm.gfm_to_html(markdown_text)
     template = template.replace("$CONTENT$", html_text)
 
     for replacement in replacements:

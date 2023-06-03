@@ -57,18 +57,44 @@ img.artscroll {
     font-family: Helvetica;
     font-size: 1.5em;
     font-weight: bold;
-    display: inline grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
     width: 100%;
 }
+
 .footer-left {
     text-align: left;
+    flex-shrink: 0;
+    flex-grow: 1;
+    width: fit-content;
 }
 
 .footer-right {
     font-family: serif;
     font-stretch: ultra-condensed;
     text-align: right;
+    flex-shrink: 1;
+    overflow: hidden;
+    width: fit-content;
+    min-width: 0px;
+    display: grid;
+    justify-items: end;
+}
+
+.fade {
+    background: linear-gradient(to right, transparent, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 80px;
+}
+
+.footer-right-back {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.footer-right-front {
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .content {

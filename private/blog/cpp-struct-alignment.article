@@ -1,0 +1,25 @@
+
+# Heya
+Let's talk about a topic people don't often think about in programming, sizes and alignments.
+
+This idea came to me at first when I was pondering the size of a reference type versus the size of a pointer. Upon searching online, I found that references are implementation defined, which led me down a fairly interesting rabbit hole about how C++ saves data inside of structs.
+
+## Sizes and alignments in a nutshell
+The concept of a size in programming is fairly intuitive. A size of a variable denotes how much space it takes up in memory. In C++ the size of basic variable types (such as integer or floating point types) is implementation defined under certain rules. For example, on Linux and Mac systems, the long integer type is defined to be 64 bits long, on Windows, it is only 32 bits.
+[A list of C++ types can be found here.](https://en.cppreference.com/w/cpp/language/types)
+
+Apart from implementation dependent types, C++ also offers fixed with types. These types have the same size regardless of the platform. Note that only integer types are defined in this list, that is because fixed width floating point types are not needed in common programming tasks. Fixed width integer types are mainly used whenever you as a programmer know that a variable won't exceed a certain value and therefore use a smaller width type to save on memory. They can also be used to represent specific things, such as UTF-16 and UTF-32 code points.
+[A list of fixed width types in C++ can be found here](https://en.cppreference.com/w/cpp/types/integer)
+
+A alignment meanwhile is less intuitive. A alignment denotes the smallest chunk of memory a variable may occupy. It's best to explain this on an example.
+
+Say you want to save a 16 bit integer into memory, but it's the 80s and you're chilling with your brand new Intel 386 processor. This processor, is interesting, because it can only address memory in 32 bit chunks. This unfortunately means, that you will have to store your 16 bit integer in a 32 bit memory cell, wasting half of the capacity.
+
+Another interesting example which you can try out at home are filesystem alignments. Go to your desktop and create a empty text file. Name it "jeff" or this trick won't work. No you can name it whatever, it doesn't matter. Open the file and write a few characters into it, then save and close. Now right click the file and go to properties. Take note of the "Size" field. It should only show a few bytes, depending on how creative you got with your writing. Look at the "Size on disk" field right underneath though. It should show 4KB. This is because although the file is only a few bytes long, it is stored in a 4096 byte block on your hard drive. In fact, the size on disk of every file on your computer should be a multiple of 4 KB. Note that this may differ based on the filesystem you're using.
+
+Sidenote:
+The 386 is actually capable of addressing individual bytes, but it does so internally, when data is read, a whole 32 bit word is read in. Effectively, address lines A0 and A1 are not carried out.
+
+##
+
+
